@@ -1,91 +1,124 @@
-import React from "react";
-import { StyleSheet } from 'react-native'
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Text } from 'react-native';
 import { Entypo, FontAwesome5, AntDesign  } from '@expo/vector-icons';
+// import { Icon } from 'react-native-vector-icons/Icon';
+import home from './components/Home'
+import config from './components/Sobre'
+import chat from './components/Contato'
+import calendario from './components/Calendario'
 
-import home from './components/Home';
-import calendario from './components/Calendario';
-import chat from "./components/Contato";
-import config from "./components/Sobre";
-
-const Abas = createBottomTabNavigator();
-
-export default function App () {
+// Telas para o Drawer Navigator
+function NotificationsScreen() {
   return (
-    <NavigationContainer >
-      <Abas.Navigator screenOptions={{
-        headerStyle:{
-          backgroundColor: '#00adef'
-        },
-        headerTitleStyle: {
-          color: '#fff',
-          fontWeight: 'bold'
-        },
-        headerTitleAlign: 'center',
+    <View>
+      <Text>Notifications Screen</Text>
+    </View>
+  );
+}
 
-        tabBarStyle: {
-          backgroundColor: "#fff"
-        },
-        tabBarLabelStyle:{
-          fontSize: 14,
-          fontWeight: "bold"
-        },
-        tabBarActiveTintColor: '#00adef',
-        tabBarInactiveTintColor: "#fff",
-        tabBarActiveBackgroundColor: "#fff",
-        tabBarInactiveBackgroundColor: "#00adef",
+function ProfileScreen() {
+  return (
+    <View>
+      <Text>Profile Screen</Text>
+    </View>
+  );
+}
+
+// Criando o Bottom Tabs Navigator
+const Tab = createBottomTabNavigator();
+
+function BottomTabs() {
+  return (
+    <Tab.Navigator screenOptions={{ 
+      headerShown:false,
+      
+      tabBarStyle: {
+        position:'absolute',
+        bottom: 10,
+        width: '80%',
+        marginLeft:35,
+        backgroundColor:'#00adef',
+        borderRadius:20,
+        borderTopWidth: 0
+      },
+      tabBarInactiveTintColor: "white",
       }}>
-        <Abas.Screen
+
+        <Tab.Screen
           name="Início"
           component = { home }
           options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ color }) => (
-              <Entypo name="home" color={ color } size={ 20 } />
+              <Entypo name="home" color={ color } size={ 18 } />
             ),
           }}
         />
 
-        <Abas.Screen
+        <Tab.Screen
           name="Agenda"
           component = { calendario }
           options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ color }) => (
-              <FontAwesome5 name="calendar"  color={ color } size={ 20 }/>
+              <FontAwesome5 name="calendar"  color={ color } size={ 18 }/>
             ),
           }}
         />
 
-        <Abas.Screen
+        <Tab.Screen
           name="Bate-Papo "
           component = { chat }
           options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ color }) => (
-              <Entypo name="message" color={ color } size={ 20 }/>
+              <Entypo name="message" color={ color } size={ 18 }/>
             ),
           }}
         />
-        <Abas.Screen
+        <Tab.Screen
           name="Configurações "
           component = { config }
           options={{
+            tabBarLabel: () => null,
             tabBarIcon: ({ color }) => (
-              <AntDesign name="setting" color={ color } size={ 20 }/>
+              <AntDesign name="setting" color={ color } size={ 18 }/>
             ),
           }}
         />
-      
-      </Abas.Navigator>
-    </NavigationContainer>
-  )
+    </Tab.Navigator>
+  );
 }
 
+// Criando o Drawer Navigator
+const Drawer = createDrawerNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator screenOptions={{
+      headerShown:false,
+    }}>
+       <Drawer.Screen
+        name="Home"
+        component={BottomTabs}
+        options={{
+          drawerIcon: () => <Entypo name="home" size={20} />,
+          drawerLabel: 'Home Screen'
+        }}
+  />
+      <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+      <Drawer.Screen name="Profile" component={ProfileScreen} />
+    </Drawer.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <DrawerNavigator />
+    </NavigationContainer>
+  );
+}

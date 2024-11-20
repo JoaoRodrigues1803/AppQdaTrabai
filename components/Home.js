@@ -1,12 +1,24 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Modal, ImageBackground, Pressable, } from 'react-native';
-import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
+import { StyleSheet, Text, View, Modal, ImageBackground, Pressable, Button} from 'react-native';
 import fundoApp from '../assets/fundoApp.png';
+import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { Entypo, FontAwesome5, AntDesign  } from '@expo/vector-icons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
-export default function Home() {
-    const [modalVisible, setModalVisible] = useState(false);
+// const [value, setValue] = useState(0);
+// let textBpmColor = 'black'; // Cor padrão
+
+// // Verificando o valor numérico e alterando a cor com base no valor
+// if (value <= 120) {
+//   textColor = 'green'; // Se o valor for 10 ou mais
+// } else if (value < 70) {
+//   textColor = 'red'; // Se o valor for 5 ou mais, mas menor que 10
+// } else {
+//   textColor = 'red'; // Se o valor for menor que 5
+// }
+
+export default function Home({ navigation }) {
+  const [modalVisible, setModalVisible] = useState(false);
     return (
     <ImageBackground style={styles.container} imageStyle={{
       height: '100%' ,
@@ -14,7 +26,24 @@ export default function Home() {
     }}
       source={fundoApp}
     >
-      <SafeAreaProvider>
+      <View style={styles.saudacao}>
+        <Text style={styles.saudacao}>Ola, vamos ver como esta a saúde de seu pet!!</Text>
+      </View>
+      <View style={{alignItems:'flex-end', marginRight:30}}>
+      <Text style={styles.bpm}>
+        100
+      </Text>
+      </View>
+
+
+
+
+
+
+
+
+
+      {/* <SafeAreaProvider>
         <SafeAreaView style={styles.centeredView}>
           <Modal
             animationType="slide"
@@ -26,7 +55,13 @@ export default function Home() {
             }}>
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>Hello World!</Text>
+              <Button
+              title="Go to Details"
+              onPress={() => {
+                navigation.navigate('Calendario'); // Navega para a tela "Details"
+                setModalVisible(false); // Fecha o modal ao navegar
+              }}
+            />
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
                   onPress={() => setModalVisible(!modalVisible)}>
@@ -41,17 +76,29 @@ export default function Home() {
             <FontAwesome6 name="ellipsis-vertical" size={24} color="black" />
           </Pressable>
         </SafeAreaView>
-      </SafeAreaProvider>
+      </SafeAreaProvider> */}
     </ImageBackground>
 
   );
 }
 
+
+
 const styles = StyleSheet.create({
+  bpm:{
+    fontSize:70,
+    color:'green',
+    fontWeight:'bold',
+    marginTop:-20
+  },
+  saudacao:{
+    marginTop:20,
+    fontSize:18,
+    fontWeight:'bold',
+    padding:20
+  },
   container: {
-    
     flex: 1,
-    justifyContent: 'center',
   },
   image:{
     flex: 1,
@@ -67,10 +114,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    textAlign:'left'
   },
   modalView: {
-    marginTop: 65,
-    margin: 1,
+    textAlign:'left',
+    marginTop: 0,
+    margin: 0,
     backgroundColor: 'white',
     padding: 35,
     alignItems: 'flex-start',
@@ -81,26 +130,20 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 0,
   },
   button: {
-    borderRadius: 20,
     padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-  
+    elevation: 0,
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
   },
   textStyle: {
-    color: 'white',
+    color: 'black',
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left'
   },
   modalText: {
     marginBottom: 15,
-    textAlign: 'center',
   },
 });

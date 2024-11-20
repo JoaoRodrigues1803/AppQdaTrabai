@@ -1,0 +1,107 @@
+import React from "react";
+import { StyleSheet } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Entypo, FontAwesome5, AntDesign  } from '@expo/vector-icons';
+import { createStackNavigator } from '@react-navigation/stack'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+
+import home from './components/Home';
+import calendario from './components/Calendario';
+import chat from "./components/Contato";
+import config from "./components/Sobre";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+
+const Stack = createStackNavigator();
+function HomeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={home} />
+      <Stack.Screen name="Calendario" component={calendario} />
+      <Stack.Screen name="Chat" component={chat} />
+    </Stack.Navigator>
+  );
+}
+
+
+const Abas = createBottomTabNavigator();
+
+export default function App () {
+  return (
+    <NavigationContainer >
+      <Abas.Navigator screenOptions={{
+        headerShown: false,
+
+        tabBarStyle: {
+          position:'absolute',
+          bottom: 10,
+          width: '50%',
+          left: 90,
+          backgroundColor:'#00adef',
+          borderRadius:20,
+          borderTopWidth: 0
+        },
+        
+        tabBarInactiveTintColor: "white",
+
+        // tabBarActiveBackgroundColor: "#fff",
+
+        // tabBarInactiveBackgroundColor: "#00adef",
+      }}>
+        <Abas.Screen
+          name="Início"
+          component = { home }
+          options={{
+            tabBarLabel: () => null,
+            tabBarIcon: ({ color }) => (
+              <Entypo name="home" color={ color } size={ 18 } />
+            ),
+          }}
+        />
+
+        <Abas.Screen
+          name="Agenda"
+          component = { calendario }
+          options={{
+            tabBarLabel: () => null,
+            tabBarIcon: ({ color }) => (
+              <FontAwesome5 name="calendar"  color={ color } size={ 18 }/>
+            ),
+          }}
+        />
+
+        <Abas.Screen
+          name="Bate-Papo "
+          component = { chat }
+          options={{
+            tabBarLabel: () => null,
+            tabBarIcon: ({ color }) => (
+              <Entypo name="message" color={ color } size={ 18 }/>
+            ),
+          }}
+        />
+        <Abas.Screen
+          name="Configurações "
+          component = { config }
+          options={{
+            tabBarLabel: () => null,
+            tabBarIcon: ({ color }) => (
+              <AntDesign name="setting" color={ color } size={ 18 }/>
+            ),
+          }}
+        />
+      
+      </Abas.Navigator>
+    </NavigationContainer>
+  )
+}
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

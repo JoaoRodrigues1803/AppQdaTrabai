@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View, ImageBackground} from 'react-native';
+import React from 'react';
+import { SafeAreaView, StyleSheet, Text, View, ImageBackground} from 'react-native';
 import fundoApp from "../assets/fundoApp.png"
+import Calendar from './calendar'; // Caminho para o arquivo Calendar.js
 
 export default function Calendario() {
   return ( 
@@ -11,15 +13,10 @@ export default function Calendario() {
       source={fundoApp}
         
     >
-      <View>
-        <Text style={styles.Calendario}>
-          pagina Calendario
-        </Text>
-      </View>
-      <View>
-
-      </View>
-
+      <SafeAreaView style={styles.container}>
+        <Calendar />        
+      </SafeAreaView>
+  
 
     </ImageBackground>
 
@@ -30,7 +27,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
