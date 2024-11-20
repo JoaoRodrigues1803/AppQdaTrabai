@@ -9,23 +9,26 @@ import home from './components/Home'
 import config from './components/Sobre'
 import chat from './components/Contato'
 import calendario from './components/Calendario'
+import login from './components/Login'
+import cadastrar from './components/Cadastrar'
 
 // Telas para o Drawer Navigator
-function NotificationsScreen() {
-  return (
-    <View>
-      <Text>Notifications Screen</Text>
-    </View>
-  );
-}
 
-function ProfileScreen() {
-  return (
-    <View>
-      <Text>Profile Screen</Text>
-    </View>
-  );
-}
+
+// function Login() {
+//   return (
+//     <ImageBackground style={{container: {
+//       flex: 1,
+//       backgroundColor: '#fff',
+//     },}} imageStyle={{
+//       height: '100%' ,
+//       width: '100%'
+//     }}
+//       source={fundoApp}
+//     >
+//     </ImageBackground>
+//   );
+// }
 
 // Criando o Bottom Tabs Navigator
 const Tab = createBottomTabNavigator();
@@ -105,12 +108,13 @@ function DrawerNavigator() {
         name="Home"
         component={BottomTabs}
         options={{
-          drawerIcon: () => <Entypo name="home" size={20} />,
-          drawerLabel: 'Home Screen'
+          
+          drawerLabel: 'Inicio'
         }}
   />
-      <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-      <Drawer.Screen name="Profile" component={ProfileScreen} />
+      <Drawer.Screen name="Logar" component={login} />
+      <Drawer.Screen name="Cadastrar" component={cadastrar} />
+      {/* <Drawer.Screen name="Profile" component={ProfileScreen} /> */}
     </Drawer.Navigator>
   );
 }
