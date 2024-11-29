@@ -82,16 +82,6 @@ function BottomTabs() {
             ),
           }}
         />
-        <Tab.Screen
-          name="Configurações "
-          component = { config }
-          options={{
-            tabBarLabel: () => null,
-            tabBarIcon: ({ color }) => (
-              <AntDesign name="setting" color={ color } size={ 18 }/>
-            ),
-          }}
-        />
     </Tab.Navigator>
   );
 }
