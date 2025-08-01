@@ -7,7 +7,7 @@ import { Entypo, FontAwesome5, AntDesign  } from '@expo/vector-icons';
 // import { Icon } from 'react-native-vector-icons/Icon';
 import home from './components/Home'
 import config from './components/Sobre'
-import chat from './components/Contato'
+import entretenimento from './components/entretenimento.js'
 import calendario from './components/Calendario'
 import login from './components/Login'
 import cadastrar from './components/Cadastrar'
@@ -74,7 +74,7 @@ function BottomTabs() {
 
         <Tab.Screen
           name="Bate-Papo "
-          component = { chat }
+          component = { entretenimento }
           options={{
             tabBarLabel: () => null,
             tabBarIcon: ({ color }) => (

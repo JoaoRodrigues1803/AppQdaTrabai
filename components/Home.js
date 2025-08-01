@@ -38,10 +38,6 @@ export default function Home({ navigation }) {
         <Text style={{color:"white", fontWeight:"bold", fontSize:12, marginBottom:10}}>
           batimento Regular
         </Text>
-        <Image
-          source={batidas}
-          style={{width:"100%", height:150}}
-        />
         </View>
       </View>
       
